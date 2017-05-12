@@ -6,8 +6,8 @@ ADDON_DIRECTORY=$1
 PROCESS_NUM=`pgrep hyperiond | wc -l`
 if [ $PROCESS_NUM -eq 1 ]
 then
-/storage/hyperion/bin/hyperion-remote.sh --color black
-sleep 100 #Turn off LEDs before killing hyperion in libreelec
+/storage/hyperion/bin/hyperion-remote.sh --color black #Turn off LEDs before killing hyperion in libreelec
+sleep 1 #Wait 1s before killing hyperion
 killall hyperiond
 # curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"id":1,"jsonrpc":"2.0","method":"GUI.ShowNotification","params":{"title":"Hyperion","message":"Disabled","image":"/storage/.kodi/addons/script.hyperion.switch/icon.png"}}' http://$KODIIP:8080/jsonrpc
 kodi-send --action=Notification"(Hyperion,Disabled,2000,/storage/.kodi/addons/script.hyperion.switch/icon.png)"
